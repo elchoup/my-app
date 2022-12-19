@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import logoBlack from "../../assets/logo_black.png"
 import addLogo from "../../assets/Add_logo.png"
-import { Link } from "react-router-dom";
+import groupoLogo from "../../assets/groupo_logo.png"
+import { Link,} from "react-router-dom";
 
 export default function Header() {
 
@@ -9,11 +10,12 @@ export default function Header() {
     return (
         <header>
             <div className="en_tete"> 
-                <div className="compte">
+                <Link to={"/userInfo"} className="compte">
                     <h2>{pseudo}</h2>
-                </div>
+                </Link>
                 <div className="rectangleLogo">             
-                    <img src={logoBlack} alt="logo groupomania" />                  
+                    <img src={logoBlack} alt="logo groupomania" className="fullLogo"/>
+                    <img src={groupoLogo} alt="logo groupomania" className="halfLogo" />                  
                 </div>
                 <Link to={"/createPost"} className="ajoutPost">
                     <p>Ajouter un post</p>

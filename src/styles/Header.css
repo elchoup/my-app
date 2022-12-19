@@ -1,6 +1,7 @@
 header {
     position: fixed;
     width: 100%;
+    min-width: 375px;
     top: 0px;
 }
 
@@ -8,7 +9,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #4E5166;
+    background-color: var(--color--secondary);
     padding: 5px 100px 2px 50px;
 }
 
@@ -16,18 +17,24 @@ header {
     width: 220px;
 }
 
-.rectangleLogo img{
+.fullLogo{
     width: 100%;
     height: 100px;
     object-fit: contain;
 }
+
+.halfLogo {
+    display: none;
+}
+
 .compte{
     display: flex;
     align-items: center;
+    text-decoration: none;
 }
 
 .compte h2{
-    color: white;
+    color: var(--color--titre--lien);
     font-size: 22px;
 }
 
@@ -35,7 +42,7 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: white;
+    color: var(--color--titre--lien);
     text-decoration: none;
 }
 
@@ -47,7 +54,7 @@ header {
 
 .logoColor {
     margin: 0;
-    color: white;
+    color: var(--color--titre--lien);
 }
 
 .ajoutPost img {
@@ -63,7 +70,7 @@ transition: 0.5s;
     display: flex;
     align-items: center;  
     font-size: 19px;
-    color: white;
+    color: var(--color--titre--lien);
     text-decoration: none;
 }
 
@@ -75,5 +82,36 @@ transition: 0.5s;
 .Back_logo p {
     margin-left: 5px;  
 }
+
+
+
+@media all and (max-width : 768px) {
+
+
+    .en_tete{
+        padding: 10px 25px 10px 25px;
+    }
+
+    .fullLogo{
+        display: none;
+    }
+
+    .rectangleLogo{
+        width: 120px;
+    }
+    
+    .halfLogo{
+        display: flex;
+        width: 100%;
+        height: 60px;
+        object-fit: contain;
+    }
+
+    .ajoutPost p {
+        display: none;
+    }
+}
+
+
 
 

@@ -9,31 +9,24 @@ import icoEdit from "../../assets/edit.png"
 export default function GetOnePost() {
     const {id} = useParams()
     const [post, setPost] = useState(null)
-    const [isOwner, setIsOwner] = useState(false)
     const userId = localStorage.getItem('userId')
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
     useEffect(() => {
         const fetchData = async () => {
       
-            await axios.get(
+            axios.get(
                 ('http://localhost:3000/api/post/' + id),
                 {headers : {
                     'Authorization': 'Bearer ' + token
                 }}
             )
             
-            .then ((result) => {
-                console.log(result)
-                const Owner = () => {
-                    if (result.data.user._id === userId){
-                        setIsOwner(!isOwner)
-                    }
-                } 
-                Owner()
-                setPost(result.data)   
+            .then ( (result) => { 
+                console.log(result)                             
+                setPost(result.data)              
             })
-            
+
         }
         fetchData()
         
@@ -51,7 +44,65 @@ export default function GetOnePost() {
         )
         navigate('/home')       
     }
+
     
+    function isOwner()  {
+        let owner = false
+        console.log(post)
+        if(post && (post.user._id === userId)) {
+            owner = true
+        }
+        return owner;
+    }
+
+    function hasLiked() {
+        let like = false;
+        if(post) {
+            like = post.usersLiked.includes(userId)
+        }
+        return like;
+    }
+
+    function handleClick() {
+        if(post && post.usersLiked.includes(userId)) {
+            axios({
+                method: 'post',
+                url: "http://localhost:3000/api/post/" + id + '/like',
+                data:{like : 0},
+                headers : {
+                    'Authorization': 'Bearer ' + token,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(res => {
+                    console.log(res.data)
+                    window.location.reload()
+                })
+            .catch(error => {
+                console.log(error)
+                alert(error.response.data.message)
+            })
+        }else {
+            axios({
+                method: 'post',
+                url: "http://localhost:3000/api/post/" + id + '/like',
+                data:{like : 1},
+                headers : {
+                    'Authorization': 'Bearer ' + token,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(res => {
+                    console.log(res.data)
+                    window.location.reload()
+                })
+            .catch(error => {
+                console.log(error)
+                alert(error.response.data.message)
+            })
+                
+        }
+    }
     
 
     return(
@@ -69,9 +120,10 @@ export default function GetOnePost() {
                                     <img src={post.imageUrl} alt="post"/>
                                     <p>{post.description}</p>
                                 </div>
-                                <div className="actionBtn">
-                                    <div className="like">J'aime</div>
-                                { isOwner && (
+                                <div className="actionBtn">                              
+                                    {hasLiked() && <button className="like" onClick={handleClick}>Je n'aime plus</button>}
+                                    {!hasLiked() && <button className="like" onClick={handleClick}>J'aime</button>}                              
+                                { isOwner() && (
                                     <div className="action--log">
                                         <Link to= {`/modif/${post._id}` } >
                                             <button className="log"><img src={icoEdit} alt="modifier" /></button>

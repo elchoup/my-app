@@ -10,9 +10,9 @@ export default function Header() {
     return (
         <header>
             <div className="en_tete"> 
-                <Link to={"/userInfo"} className="compte">
+                <div className="compte">
                     <h2>{pseudo}</h2>
-                </Link>
+                </div>
                 <div className="rectangleLogo">             
                     <img src={logoBlack} alt="logo groupomania" className="fullLogo"/>
                     <img src={groupoLogo} alt="logo groupomania" className="halfLogo" />                  

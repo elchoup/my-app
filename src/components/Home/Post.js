@@ -33,7 +33,7 @@ useEffect(() => {
                 <article  >
                     <ul className="post">
                         {data.map(item =>(
-                            <Link key={item._id} to= {`/${item._id}` }  className="post--link">
+                            <Link key={item._id} to= {`/${item._id}`}  className="post--link">
                                 <li  className="post--box">
                                     <div>
                                         <div className="post--box--titre">

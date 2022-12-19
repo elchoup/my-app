@@ -1,14 +1,16 @@
 import React from "react";
-import CreateForm from "./Form";
 import Header from "./Header";
-import Footer from "../Footer";
+import InfoUser from "./Info";
+import Footer from '../Footer'
 
-export default function CreatePost() {
+
+export default function UserInfo() {
     return(
         <div>
             <Header />
-            <CreateForm />
+            <InfoUser />
             <Footer />
         </div>
+       
     )
 }

@@ -1,6 +1,7 @@
 .bloc_form {
     margin-top: 200px;
     margin-bottom: 100px;
+    min-width: 365px;
 }
 
 .bloc_form form {
@@ -8,9 +9,9 @@
     flex-direction: column;
     width: 60%;
     margin: auto;
-    color: #4E5166;
-    background-color: #FFD7D7;
-    border: 2px #4E5166 solid;
+    color: var(--color--secondary);
+    background-color: var(--color--tertiary);
+    box-shadow: 0px 5px 20px 1px;
     padding: 40px;
 }
 
@@ -44,15 +45,17 @@ form input {
 }
 
 .box_submit{
+    min-width: 100px;
     width: 30%;
     height: 40px;
     margin: auto;
-    color: white;
-    background-color: #4E5166;
+    color: var(--color--titre--lien);
+    background-color:var(--color--secondary);
     border: none;
 }
 
 .box_Link{
+    min-width: 100px;
     width: 30%;
     margin: auto;
     margin-top: 20px;
@@ -62,8 +65,62 @@ form input {
     font-size: 16px;
     width: 100%;
     height: 40px;
-    color: white;
-    background-color: #4E5166;
+    color: var(--color--titre--lien);
+    background-color: var(--color--secondary);
     border: none;
+}
+
+.bloc_info {
+    width: 60%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--color--tertiary);
+    padding-top: 20px;
+    padding-bottom: 50px;
+    box-shadow: 0px 5px 20px 1px;
+}
+
+.bloc_info h1 {
+    font-size: 30px;
+    color: var(--color--secondary);
+}
+
+.bloc_info p {
+    font-size: 19px;
+    margin-bottom: 60px;
+    text-align: center;
+}
+.btn_link{
+    text-decoration: none;
+}
+
+.btn_info {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    padding: 10px;
+    background-color: var(--color--secondary);
+    color: var(--color--titre--lien);
+    border: none;
+    cursor: pointer;
+}
+
+.btn_info img {
+    width: 18px;
+    margin-right: 5px;
+}
+
+
+@media all and (max-width : 768px) {
+
+    .bloc_form form {
+        width: 80%;      
+    }
+
+    .bloc_info {
+        width: 80%;
+    }
 }
 

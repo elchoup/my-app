@@ -6,6 +6,7 @@ import Login from "./components/Login/Login"
 import CreatePost from './components/Create/CreatePost'
 import OnePost from './components/OnePost/OnePost'
 import ModifyPost from './components/ModifyPost/ModifyPost'
+import UserInfo from './components/User/User'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/createPost" element = {<CreatePost />} />
         <Route path="/:id" element = {<OnePost />} />
         <Route path="/modif/:id" element = {<ModifyPost />} />
+        <Route path="/userInfo" element = {<UserInfo />} />
       </Routes>
     </div>
   );

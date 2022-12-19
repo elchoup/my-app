@@ -1,6 +1,7 @@
 import React from "react";
 import LoginForm from "./Form"
 import Header from "./Header";
+import Footer from "../Footer";
 
 
 export default function Home() {
@@ -8,6 +9,7 @@ export default function Home() {
             <div>
                 <Header />
                 <LoginForm />
+                <Footer />
             </div>          
     )
 }
