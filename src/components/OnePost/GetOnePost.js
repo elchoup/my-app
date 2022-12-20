@@ -45,11 +45,24 @@ export default function GetOnePost() {
         navigate('/home')       
     }
 
+
+    function isOwnerOrAdmin (ownerId) {
+        let isAdmin = localStorage.getItem("isAdmin")
+        let isOwnerOrAdmin = false
+        if(isAdmin === "true") {    
+            return true
+        }
+        if(userId === ownerId ) {
+            return true
+        }
+        return isOwnerOrAdmin
+    }
+
     
     function isOwner()  {
         let owner = false
         console.log(post)
-        if(post && (post.user._id === userId)) {
+        if(post && (isOwnerOrAdmin(post.user._id))) {
             owner = true
         }
         return owner;

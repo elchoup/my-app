@@ -6,7 +6,7 @@ import "../../styles/Form.css"
 export default function LoginForm() {
     const url ="http://localhost:3000/api/auth/login"
     const [data, setData] =useState({
-        pseudo:"",
+        email:"",
         password:""
     })
     const navigate = useNavigate()
@@ -21,14 +21,15 @@ export default function LoginForm() {
     function submit(e) {
         e.preventDefault()
         axios.post(url, {
-            pseudo: data.pseudo,
+            email: data.email,
             password: data.password
         })
         .then(res => {
             console.log(res.data)
             localStorage.setItem("token", res.data.token)
             localStorage.setItem("userId", res.data.userId)
-            localStorage.setItem("pseudo", data.pseudo)
+            localStorage.setItem("pseudo", res.data.userPseudo)
+            localStorage.setItem("isAdmin", res.data.userAdmin)
             navigate("/home")
         })
         .catch(error => {
@@ -45,13 +46,13 @@ export default function LoginForm() {
                         <form onSubmit={(e)=> submit(e)}>    
                             <h1>Connexion</h1>
 
-                            <label htmlFor="pseudo">Pseudo</label> 
+                            <label htmlFor="email">Email</label> 
                             <input 
                             type="text" 
                             className="box_text"
                             placeholder="Entrer Pseudo" 
-                            name="pseudo"
-                            value={data.pseudo}
+                            name="email"
+                            value={data.email}
                             onChange= {(e) => handle(e)}
                             required />
                             

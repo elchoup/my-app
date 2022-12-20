@@ -34,7 +34,7 @@ export default function SignupForm() {
         })
         .catch(error => {
             console.log(error)
-            return alert(error.response.data)
+            return alert(error.response.data.error.message)
         })
     }
 
