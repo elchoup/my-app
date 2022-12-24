@@ -12,25 +12,25 @@ export default function GetOnePost() {
     const userId = localStorage.getItem('userId')
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
-    useEffect(() => {
-        const fetchData = async () => {
-      
-            axios.get(
-                ('http://localhost:3000/api/post/' + id),
-                {headers : {
-                    'Authorization': 'Bearer ' + token
-                }}
-            )
-            
-            .then ( (result) => { 
-                console.log(result)                             
-                setPost(result.data)              
-            })
 
-        }
-        fetchData()
+    function getPost () {
+      
+        axios.get(
+            ('http://localhost:3000/api/post/' + id),
+            {headers : {
+                'Authorization': 'Bearer ' + token
+            }}
+        )
         
-       
+        .then ( (result) => { 
+            console.log(result)                             
+            setPost(result.data)              
+        })
+
+    }
+
+    useEffect(() => {     
+        getPost()         
         //console.log(post)
         
     }, []) 
@@ -77,44 +77,32 @@ export default function GetOnePost() {
     }
 
     function handleClick() {
+        //todo mettre data à part et ne faire qu'un axios
+        let likeValue;
         if(post && post.usersLiked.includes(userId)) {
-            axios({
-                method: 'post',
-                url: "http://localhost:3000/api/post/" + id + '/like',
-                data:{like : 0},
-                headers : {
-                    'Authorization': 'Bearer ' + token,
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(res => {
-                    console.log(res.data)
-                    window.location.reload()
-                })
-            .catch(error => {
-                console.log(error)
-                alert(error.response.data.message)
-            })
-        }else {
-            axios({
-                method: 'post',
-                url: "http://localhost:3000/api/post/" + id + '/like',
-                data:{like : 1},
-                headers : {
-                    'Authorization': 'Bearer ' + token,
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(res => {
-                    console.log(res.data)
-                    window.location.reload()
-                })
-            .catch(error => {
-                console.log(error)
-                alert(error.response.data.message)
-            })
-                
+            likeValue = 0
+        }else{
+            likeValue= 1
         }
+
+        axios({
+            method: 'post',
+            url: "http://localhost:3000/api/post/" + id + '/like',
+            data:{like: likeValue},
+            headers : {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => {
+                console.log(res.data)
+                //todo: refaire un fetch post
+                getPost() 
+            })
+        .catch(error => {
+            console.log(error)
+            alert(error.response.data.message)
+        })
     }
     
 

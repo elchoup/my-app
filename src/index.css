@@ -19,9 +19,6 @@ body {
 }
 
 .foot{
-  position: absolute;
-  bottom: 0;
-  width: 100%;
   background: linear-gradient(to right,rgba(255,215,215,0.7), #f9a2a2);
   height: 120px;
   bottom: 0;
@@ -46,6 +43,16 @@ body {
   padding-top: 50px;
   color: var(--color--secondary);
   font-style: italic;
+}
+
+
+@media all and (min-height: 780px) {
+
+  .foot{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
 }
 
 

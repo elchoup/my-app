@@ -21,19 +21,32 @@ export default function ModifyForm () {
     async function handleSubmit(e) {
         e.preventDefault()
         const token = localStorage.getItem('token');
-        
-        const formData = new FormData()
-        const post = {"description" : description}
-        formData.append("post", JSON.stringify(post))
-        formData.append('image', image)
-        axios({
-            method: 'put',
-            url: "http://localhost:3000/api/post/" + id,
-            data:(formData),
-            headers : {
+ 
+        let headerValue;
+        let dataValue;
+
+        if (image === "") {
+            dataValue = {description: description}
+            headerValue = {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json'
+            }
+        }else {
+            const formData = new FormData()
+            const post = {"description" : description}
+            formData.append("post", JSON.stringify(post))
+            formData.append('image', image)
+            dataValue = formData 
+            headerValue = {
                 'Authorization': 'Bearer ' + token,
                 'Content-Type': 'multipart/form-data'
             }
+        }
+        axios({
+            method: 'put',
+            url: "http://localhost:3000/api/post/" + id,
+            data: dataValue,
+            headers : headerValue
         })
        .then(res => {
             console.log(res.data)

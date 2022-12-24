@@ -70,6 +70,13 @@ form input {
     border: none;
 }
 
+.bloc_form_info {
+    margin-top: 260px;
+    margin-bottom: 100px;
+    min-width: 365px;
+}
+
+
 .bloc_info {
     width: 60%;
     margin: auto;

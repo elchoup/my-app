@@ -6,6 +6,7 @@ import "../../styles/Form.css"
 
 export default function SignupForm() {
     const url ="http://localhost:3000/api/auth/signup"
+    //Declaration d'une nouvelle variable que l'on appelle data qui contient un pseudo un email et un password
     const [data, setData] = useState({
         pseudo:"",
         email:"",
@@ -16,13 +17,16 @@ export default function SignupForm() {
 
     function handle(e) {
         const newData = {...data}
+        //on passe en paramaetre de new data chaque valeur correspondant au 'name' de chaque input
         newData[e.target.name] = e.target.value
+        //On met à jour data avec setData
         setData(newData)
         console.log(newData)
     }
 
     function submit(e) {
         e.preventDefault()
+        // Envoie des informations via l'url et la methode post
         axios.post(url, {
             pseudo: data.pseudo,
             email: data.email,

@@ -9,7 +9,7 @@ export default function InfoUser() {
     }
     return (
            <section>
-                <div className="bloc_form">
+                <div className="bloc_form_info">
                     <div className= "bloc_info">
                         <h1>Déconnexion</h1>
                         <p>Merci de votre visite {pseudo}. Vous deconnecter ?</p>
